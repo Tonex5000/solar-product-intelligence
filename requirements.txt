@@ -21,6 +21,9 @@ passlib[bcrypt]>=1.7.4
 # PDF Processing
 PyMuPDF>=1.23.0
 
+# Simulation & Math
+numpy>=1.24.0
+
 # Utilities
 python-multipart>=0.0.6
 aiofiles>=23.2.1

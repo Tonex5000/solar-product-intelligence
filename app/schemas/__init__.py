@@ -56,6 +56,26 @@ from app.schemas.review import (
     ReviewResponse,
     ReviewUpdate,
 )
+from app.schemas.simulation import (
+    SimulationInput,
+    SimulationOutput,
+    SimulationSummary,
+    SimulationEvent,
+    SimulationStatus,
+    EventType,
+    Severity,
+    TimelineEntry,
+    Recommendation,
+    ComponentSpecs,
+    BatterySpec,
+    InverterSpec,
+    PanelSpec,
+    ChargeControllerSpec,
+    SystemValidationResult,
+    ValidationError,
+    SimulationHistory,
+    SimulationHistoryList,
+)
 
 __all__ = [
     # User/Auth
@@ -107,4 +127,23 @@ __all__ = [
     "ReviewListResponse",
     "ReviewResponse",
     "ReviewUpdate",
+    # Simulation
+    "SimulationInput",
+    "SimulationOutput",
+    "SimulationSummary",
+    "SimulationEvent",
+    "SimulationStatus",
+    "EventType",
+    "Severity",
+    "TimelineEntry",
+    "Recommendation",
+    "ComponentSpecs",
+    "BatterySpec",
+    "InverterSpec",
+    "PanelSpec",
+    "ChargeControllerSpec",
+    "SystemValidationResult",
+    "ValidationError",
+    "SimulationHistory",
+    "SimulationHistoryList",
 ]

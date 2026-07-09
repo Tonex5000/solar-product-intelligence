@@ -15,6 +15,7 @@ from app.core.database import engine, Base
 from app.api import admin as admin_api
 from app.api import public as public_api
 from app.api.auth import router as auth_router
+from app.api.simulation import router as simulation_router
 
 # Configure logging
 logging.basicConfig(
@@ -76,6 +77,7 @@ A production-ready backend for managing solar products with strict data integrit
 - **PDF Text Extraction**: Extract text from datasheets for AI usage
 - **Automated Spec Extraction**: Parse technical specifications from documents
 - **Product Validation Engine**: Enforce quality standards automatically
+- **Solar Simulation Engine**: Realistic solar system behavior simulation
 
 ### Authentication
 - Admin endpoints require JWT authentication
@@ -111,6 +113,9 @@ app.include_router(admin_api.router, prefix="/api")
 
 # Public routes
 app.include_router(public_api.router, prefix="/api")
+
+# Simulation routes
+app.include_router(simulation_router, prefix="/api")
 
 
 @app.get("/", tags=["Health"])

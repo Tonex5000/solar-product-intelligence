@@ -20,6 +20,59 @@ A production-ready FastAPI backend for managing solar products with **strict dat
 - **PyMuPDF** - PDF text extraction
 - **JWT** - Authentication tokens
 
+## Deployment
+
+### 🚂 Railway (Recommended)
+
+1. **Connect GitHub Repository**
+   - Go to [Railway](https://railway.app)
+   - Connect your GitHub account
+   - Select this repository
+
+2. **Add PostgreSQL Database**
+   - In Railway dashboard, click "Add Plugin"
+   - Select "PostgreSQL"
+   - Railway will automatically set `DATABASE_URL`
+
+3. **Configure Environment Variables**
+   - In Railway project settings, add:
+     ```
+     SECRET_KEY=<generate-a-random-secret-key>
+     APP_NAME=Solar Product Intelligence
+     DEBUG=false
+     ```
+
+4. **Deploy**
+   - Railway will automatically detect and deploy
+   - Or manually trigger a deployment
+
+5. **Seed Database**
+   - Use Railway's terminal or connect via CLI:
+   ```bash
+   railway run python -m app.db.seed
+   ```
+
+### Docker
+
+```bash
+# Build image
+docker build -t solar-product-api .
+
+# Run container
+docker run -p 8000:8000 \
+  -e DATABASE_URL=postgresql://user:pass@host/db \
+  -e SECRET_KEY=your-secret-key \
+  solar-product-api
+```
+
+### Manual Deployment
+
+```bash
+pip install -r requirements.txt
+python -m app.db.seed
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
 ## Project Structure
 
 ```
@@ -44,6 +97,8 @@ A production-ready FastAPI backend for managing solar products with **strict dat
 ├── tests/            # Test suite
 ├── uploads/          # File uploads
 ├── main.py           # Application entry point
+├── Dockerfile        # Docker configuration
+├── railway.json      # Railway configuration
 └── requirements.txt   # Dependencies
 ```
 
@@ -90,39 +145,6 @@ A production-ready FastAPI backend for managing solar products with **strict dat
 - max_input_voltage
 - rated_current
 - efficiency
-
-## Setup
-
-### 1. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Configure Environment
-
-```bash
-cp .env.example .env
-# Edit .env with your database credentials
-```
-
-### 3. Run Migrations
-
-```bash
-alembic upgrade head
-```
-
-### 4. Seed Initial Data
-
-```bash
-python -m app.db.seed
-```
-
-### 5. Start the Server
-
-```bash
-uvicorn main:app --reload
-```
 
 ## API Endpoints
 

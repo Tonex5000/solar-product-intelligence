@@ -1,0 +1,151 @@
+"""
+Solar Product Intelligence Backend System
+
+A FastAPI-based backend for managing solar products with strict data integrity rules.
+"""
+import logging
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app.core.config import get_settings
+from app.core.database import engine, Base
+from app.api import admin as admin_api
+from app.api import public as public_api
+from app.api.auth import router as auth_router
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
+settings = get_settings()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Application lifespan events."""
+    # Startup
+    logger.info("Starting Solar Product Intelligence Backend...")
+    logger.info(f"Application: {settings.APP_NAME} v{settings.APP_VERSION}")
+    
+    # Create database tables if they don't exist
+    Base.metadata.create_all(bind=engine)
+    logger.info("Database tables verified/created.")
+    
+    yield
+    
+    # Shutdown
+    logger.info("Shutting down Solar Product Intelligence Backend...")
+
+
+# Create FastAPI application
+app = FastAPI(
+    title=settings.APP_NAME,
+    version=settings.APP_VERSION,
+    description="""
+## Solar Product Intelligence Backend System
+
+A production-ready backend for managing solar products with strict data integrity rules.
+
+### Features
+- **Strict Data Validation**: Every product requires an official datasheet
+- **Admin-Controlled Ingestion**: Only admins can add products and data
+- **PDF Text Extraction**: Extract text from datasheets for AI usage
+- **Automated Spec Extraction**: Parse technical specifications from documents
+- **Product Validation Engine**: Enforce quality standards automatically
+
+### Authentication
+- Admin endpoints require JWT authentication
+- Public endpoints are accessible without authentication
+
+### Data Integrity Rules
+1. No external datasets - all data is admin-controlled
+2. No public/user uploads - only admin ingestion
+3. Every product MUST have an official datasheet
+4. No datasheet = reject product
+5. All specs must be extracted from datasheet text
+6. System stores both structured specs and raw document text
+    """,
+    lifespan=lifespan,
+)
+
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.CORS_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# Include routers
+# Authentication routes
+app.include_router(auth_router, prefix="/api")
+
+# Admin routes
+app.include_router(admin_api.router, prefix="/api")
+
+# Public routes
+app.include_router(public_api.router, prefix="/api")
+
+
+@app.get("/", tags=["Health"])
+async def root():
+    """Root endpoint - API health check."""
+    return {
+        "status": "healthy",
+        "application": settings.APP_NAME,
+        "version": settings.APP_VERSION,
+    }
+
+
+@app.get("/health", tags=["Health"])
+async def health_check():
+    """Health check endpoint for monitoring."""
+    return {
+        "status": "healthy",
+        "database": "connected",
+    }
+
+
+@app.get("/api/info", tags=["Information"])
+async def api_info():
+    """Get API information and available endpoints."""
+    return {
+        "name": settings.APP_NAME,
+        "version": settings.APP_VERSION,
+        "endpoints": {
+            "auth": {
+                "login": "POST /api/auth/login",
+                "register": "POST /api/auth/register",
+            },
+            "admin": {
+                "companies": "/api/admin/companies",
+                "products": "/api/admin/products",
+                "categories": "/api/admin/categories",
+                "documents": "/api/admin/products/{id}/documents",
+                "specifications": "/api/admin/products/{id}/specifications",
+                "reviews": "/api/admin/reviews",
+            },
+            "public": {
+                "companies": "/api/companies",
+                "products": "/api/products",
+                "categories": "/api/categories",
+            },
+        },
+    }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=settings.DEBUG,
+    )

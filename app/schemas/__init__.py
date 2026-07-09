@@ -76,6 +76,25 @@ from app.schemas.simulation import (
     SimulationHistory,
     SimulationHistoryList,
 )
+from app.schemas.ai import (
+    ExplanationLevel,
+    DiagnosisSeverity,
+    ReferencedSpec,
+    ReferencedEvent,
+    DiagnosisProblem,
+    ProductRecommendation,
+    DatasheetSnippet,
+    ExplainSimulationRequest,
+    ExplainSimulationResponse,
+    DatasheetQueryRequest,
+    DatasheetQueryResponse,
+    DiagnoseRequest,
+    DiagnoseResponse,
+    RecommendRequest,
+    RecommendResponse,
+    AIContext,
+    SYSTEM_PROMPTS,
+)
 
 __all__ = [
     # User/Auth
@@ -146,4 +165,22 @@ __all__ = [
     "ValidationError",
     "SimulationHistory",
     "SimulationHistoryList",
+    # AI
+    "ExplanationLevel",
+    "DiagnosisSeverity",
+    "ReferencedSpec",
+    "ReferencedEvent",
+    "DiagnosisProblem",
+    "ProductRecommendation",
+    "DatasheetSnippet",
+    "ExplainSimulationRequest",
+    "ExplainSimulationResponse",
+    "DatasheetQueryRequest",
+    "DatasheetQueryResponse",
+    "DiagnoseRequest",
+    "DiagnoseResponse",
+    "RecommendRequest",
+    "RecommendResponse",
+    "AIContext",
+    "SYSTEM_PROMPTS",
 ]

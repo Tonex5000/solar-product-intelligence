@@ -31,6 +31,10 @@ class Settings(BaseSettings):
     # CORS
     CORS_ORIGINS: list = ["*"]
 
+    # Groq AI (LLM for explanations)
+    GROQ_API_KEY: str = os.getenv("GROQ_API_KEY", "")
+    GROQ_MODEL: str = os.getenv("GROQ_MODEL", "qwen")
+
     class Config:
         env_file = ".env"
         case_sensitive = True

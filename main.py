@@ -16,6 +16,7 @@ from app.api import admin as admin_api
 from app.api import public as public_api
 from app.api.auth import router as auth_router
 from app.api.simulation import router as simulation_router
+from app.api.ai import router as ai_router
 
 # Configure logging
 logging.basicConfig(
@@ -78,6 +79,7 @@ A production-ready backend for managing solar products with strict data integrit
 - **Automated Spec Extraction**: Parse technical specifications from documents
 - **Product Validation Engine**: Enforce quality standards automatically
 - **Solar Simulation Engine**: Realistic solar system behavior simulation
+- **AI Explanation Layer**: Intelligent explanations using Groq LLM
 
 ### Authentication
 - Admin endpoints require JWT authentication
@@ -116,6 +118,9 @@ app.include_router(public_api.router, prefix="/api")
 
 # Simulation routes
 app.include_router(simulation_router, prefix="/api")
+
+# AI routes
+app.include_router(ai_router, prefix="/api")
 
 
 @app.get("/", tags=["Health"])

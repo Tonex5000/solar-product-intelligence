@@ -1,13 +1,13 @@
 # SolarFlow - Solar Simulation Frontend
 
-A professional React frontend for the Solar Simulation & Intelligence Platform with a **Railway System Concept** design.
+A professional **cinematic React frontend** for the Solar Simulation & Intelligence Platform with a **Railway System Concept** design. Features realistic energy flow visualization, cable temperature effects, and immersive sound design.
 
 ## 🚆 Design Concept
 
-The UI is inspired by railway/metro system maps:
+The UI is inspired by railway/metro system maps, SCADA systems, and flight simulators:
 - Each solar component = a "station/node"
-- Energy flow = "railway track"
-- System behavior = "moving flow"
+- Energy flow = "railway track" with animated particles
+- System behavior = "moving flow" with dynamic responses
 - Failures = "alerts on the track"
 
 ## ✨ Features
@@ -27,7 +27,9 @@ The UI is inspired by railway/metro system maps:
    - Spec previews
 
 3. **Simulation Builder** (`/simulate`)
-   - Interactive railway visualization
+   - **Cinematic simulation canvas** with real-time visualization
+   - **Energy flow particles** animated along cables
+   - **Cable temperature visualization** (blue → orange → red)
    - Component selection
    - Configuration sliders
    - Real-time parameter updates
@@ -45,13 +47,25 @@ The UI is inspired by railway/metro system maps:
    - Filtering and search
    - Statistics overview
 
-### Components
+### Cinematic Components
 
-- **RailwayNode** - Interactive system component nodes
-- **RailwayFlow** - Animated energy flow visualization
-- **AIChatPanel** - AI assistant for explanations
-- **EventFeed** - Timeline of simulation events
-- **ProductCard** - Product display cards
+- **CinematicSimulationCanvas** - Main simulation visualization
+  - Animated energy flow particles
+  - Cable temperature/stress visualization
+  - Node status indicators
+  - Real-time metrics panel
+  
+- **SimulationAlertSystem** - Educational alert overlays
+  - Warning explanations
+  - Root cause analysis
+  - Recommendations
+  - Key learnings
+  
+- **SoundEngine** - Immersive audio
+  - Ambient electrical hum
+  - Energy flow sounds
+  - Warning/critical alerts
+  - Interaction sounds
 
 ## 🛠️ Tech Stack
 
@@ -59,10 +73,12 @@ The UI is inspired by railway/metro system maps:
 - **Vite** for build tooling
 - **TailwindCSS** for styling
 - **Framer Motion** for animations
+- **React Three Fiber** (optional for 3D mode)
 - **React Router** for navigation
 - **Zustand** for state management
 - **TanStack Query** for API calls
 - **Recharts** for data visualization
+- **Howler.js** for sound engine
 - **Lucide React** for icons
 
 ## 🎨 Design System
@@ -84,6 +100,12 @@ The UI is inspired by railway/metro system maps:
 - **Optimal** (green) - Performing above expectations
 - **Warning** (orange) - Attention needed
 - **Failure** (red) - Critical issue detected
+
+### Cable States
+
+- **Normal** (blue) - Operating within limits
+- **Heating** (orange) - Approaching max capacity
+- **Critical** (red) - Overloaded, may fail
 
 ## 📦 Installation
 
@@ -108,14 +130,29 @@ The frontend connects to the backend at `/api`:
 - `POST /ai/diagnose` - Get system diagnosis
 - `POST /ai/recommend` - Get recommendations
 
-## 🎥 Animations
+## 🎥 Cinematic Features
 
-The UI uses Framer Motion for:
-- Page transitions
-- Component hover effects
-- Energy flow particles
-- Node status indicators
-- Chat message animations
+### Energy Flow System
+- Particles flow along cables based on current load
+- Speed increases with power demand
+- Instability visualization during overload
+
+### Cable Temperature System
+- Color shifts based on temperature
+- Thickness reflects current rating
+- Heat indicators on stressed cables
+
+### Sound Design
+- Ambient electrical hum
+- Dynamic energy flow sounds
+- Warning beeps for stress conditions
+- Critical alerts for failures
+
+### Educational Overlays
+- Every alert includes explanation
+- Root cause analysis
+- Recommendations
+- Key learnings for users
 
 ## 📱 Responsive
 
@@ -127,7 +164,8 @@ The design is fully responsive and works on:
 ## 🚀 Future Enhancements
 
 - [ ] React Flow integration for custom railway layouts
-- [ ] Real-time simulation updates
-- [ ] 3D system visualization
+- [ ] 3D visualization mode
+- [ ] Real-time WebSocket simulation updates
 - [ ] Voice assistant integration
 - [ ] Export to PDF reports
+- [ ] Multi-system comparison view

@@ -142,14 +142,15 @@ export interface AIChatMessage {
 }
 
 // Railway System Types
-export type NodeStatus = 'normal' | 'optimal' | 'warning' | 'failure'
+export type NodeStatus = 'normal' | 'optimal' | 'warning' | 'failure' | 'offline'
+export type CableStatus = 'normal' | 'heating' | 'critical' | 'offline'
 
 export interface RailwayNode {
   id: string
   type: 'panel' | 'controller' | 'battery' | 'inverter' | 'load'
   label: string
   status: NodeStatus
-  specs: Record<string, string>
+  specs: Record<string, string | number>
   position: { x: number; y: number }
 }
 
@@ -159,6 +160,61 @@ export interface RailwayEdge {
   target: string
   flow: number // 0-100 percentage
   status: 'active' | 'warning' | 'stopped'
+  current?: number
+  temperature?: number
+  maxCurrent?: number
+}
+
+// Real-time simulation metrics
+export interface SimulationMetrics {
+  voltage: number
+  current: number
+  power: number
+  temperature: number
+  efficiency: number
+}
+
+// Cinematic simulation state
+export interface CinematicNode {
+  id: string
+  type: 'panel' | 'controller' | 'battery' | 'inverter' | 'load'
+  label: string
+  status: NodeStatus
+  specs: {
+    voltage?: number
+    current?: number
+    power?: number
+    temperature?: number
+    efficiency?: number
+  }
+}
+
+export interface CinematicCable {
+  id: string
+  source: string
+  target: string
+  status: CableStatus
+  current: number
+  temperature: number
+  maxCurrent: number
+}
+
+// Alert system types
+export type AlertSeverity = 'info' | 'warning' | 'critical' | 'success'
+
+export interface Alert {
+  id: string
+  type: 'info' | 'warning' | 'damage' | 'failure' | 'milestone' | 'recommendation'
+  severity: AlertSeverity
+  title: string
+  message: string
+  component?: string
+  day?: number
+  explanation?: string
+  cause?: string
+  recommendation?: string
+  timestamp: Date
+  isRead: boolean
 }
 
 // Component Selection

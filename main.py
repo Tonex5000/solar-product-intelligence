@@ -4,6 +4,7 @@ Solar Product Intelligence Backend System
 A FastAPI-based backend for managing solar products with strict data integrity rules.
 """
 import logging
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -25,16 +26,34 @@ logger = logging.getLogger(__name__)
 settings = get_settings()
 
 
+def init_db():
+    """Initialize database tables."""
+    try:
+        Base.metadata.create_all(bind=engine)
+        logger.info("Database tables created successfully.")
+    except Exception as e:
+        logger.error(f"Failed to create database tables: {e}")
+        raise
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application lifespan events."""
     # Startup
     logger.info("Starting Solar Product Intelligence Backend...")
     logger.info(f"Application: {settings.APP_NAME} v{settings.APP_VERSION}")
+    logger.info(f"Database: {settings.DATABASE_URL.split('@')[-1] if '@' in settings.DATABASE_URL else 'configured'}")
     
     # Create database tables if they don't exist
-    Base.metadata.create_all(bind=engine)
-    logger.info("Database tables verified/created.")
+    init_db()
+    
+    # Run seed in development only
+    if settings.DEBUG or os.environ.get("RUN_SEED", "").lower() == "true":
+        from app.db.seed import seed_all
+        try:
+            seed_all()
+        except Exception as e:
+            logger.warning(f"Seed already exists or failed: {e}")
     
     yield
     

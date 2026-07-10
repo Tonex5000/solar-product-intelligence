@@ -55,7 +55,7 @@ class SoundEngine {
         volume: this.masterVolume,
         preload: true,
         html5: true, // Better for longer sounds
-        onloaderror: (id, error) => {
+        onloaderror: (_id, error) => {
           console.warn(`Sound ${type} failed to load:`, error)
         },
       })

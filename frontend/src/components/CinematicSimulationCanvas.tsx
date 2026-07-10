@@ -1,4 +1,4 @@
-import { useRef, useMemo, useEffect } from 'react'
+import { useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   Sun, 
@@ -207,11 +207,6 @@ function CableComponent({
   
   // Calculate cable thickness based on current load
   const thickness = isActive ? Math.min(8, 2 + (cable.current / cable.maxCurrent) * 6) : 2
-  
-  // Calculate cable temperature color
-  const tempFactor = Math.min(1, cable.temperature / 100)
-  
-  const gradientId = `cable-gradient-${cable.id}`
 
   return (
     <g className="cable-group">
@@ -348,7 +343,7 @@ function MetricsPanel({ metrics }: { metrics: SimulationMetrics }) {
             <span className="text-muted-foreground">Power</span>
             <span className="font-mono font-medium">{metrics.power.toFixed(0)}W</span>
           </div>
-          <div className="h-2 bg-solar-bg-card rounded-full overflow-hidden">
+          <div className="h-2 bg-solar-card rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-gradient-to-r from-primary to-solar"
               animate={{ width: `${Math.min(100, (metrics.power / 5000) * 100)}%` }}
@@ -363,7 +358,7 @@ function MetricsPanel({ metrics }: { metrics: SimulationMetrics }) {
             <span className="text-muted-foreground">Current</span>
             <span className="font-mono font-medium">{metrics.current.toFixed(1)}A</span>
           </div>
-          <div className="h-2 bg-solar-bg-card rounded-full overflow-hidden">
+          <div className="h-2 bg-solar-card rounded-full overflow-hidden">
             <motion.div
               className="h-full bg-primary"
               animate={{ width: `${Math.min(100, (metrics.current / 100) * 100)}%` }}
@@ -415,7 +410,7 @@ export function CinematicSimulationCanvas({
   isRunning,
   onNodeClick,
   selectedNodeId,
-  soundEnabled = true,
+  soundEnabled: _soundEnabled = true,
 }: {
   nodes: SimulationNode[]
   cables: SimulationCable[]

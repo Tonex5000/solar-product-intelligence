@@ -32,7 +32,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-solar-bg text-foreground;
+    @apply bg-solar text-foreground;
   }
 }
 

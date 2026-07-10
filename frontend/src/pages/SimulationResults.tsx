@@ -9,21 +9,17 @@ import {
   YAxis, 
   CartesianGrid, 
   Tooltip,
-  ResponsiveContainer,
-  Legend,
-  BarChart,
-  Bar
+  ResponsiveContainer
 } from 'recharts'
 import { 
   Activity,
   AlertTriangle, 
   Battery, 
-  Zap, 
+  Zap,
   TrendingUp,
   TrendingDown,
   Sun,
   MessageSquare,
-  ChevronRight,
   Download,
   RefreshCw,
   Lightbulb,
@@ -103,17 +99,17 @@ export function SimulationResults() {
               'flex items-center gap-2 px-4 py-2 rounded-xl transition-all',
               showAI 
                 ? 'bg-primary text-white' 
-                : 'bg-solar-bg-card hover:bg-solar-bg-card/80'
+                : 'bg-solar-card hover:bg-solar-card/80'
             )}
           >
             <MessageSquare className="w-5 h-5" />
             AI Assistant
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-solar-bg-card rounded-xl hover:bg-solar-bg-card/80 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-solar-card rounded-xl hover:bg-solar-card/80 transition-colors">
             <Download className="w-5 h-5" />
             Export
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-solar-bg-card rounded-xl hover:bg-solar-bg-card/80 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 bg-solar-card rounded-xl hover:bg-solar-card/80 transition-colors">
             <RefreshCw className="w-5 h-5" />
             Re-run
           </button>
@@ -198,7 +194,7 @@ export function SimulationResults() {
           </div>
 
           {/* Tabs */}
-          <div className="flex gap-2 bg-solar-bg-card rounded-xl p-1">
+          <div className="flex gap-2 bg-solar-card rounded-xl p-1">
             {(['overview', 'timeline', 'events', 'recommendations'] as const).map((tab) => (
               <button
                 key={tab}
@@ -413,7 +409,7 @@ export function SimulationResults() {
                         <span className="text-sm text-muted-foreground">Day {event.day}</span>
                       </div>
                       <p className="text-sm text-muted-foreground">{event.message}</p>
-                      <span className="inline-block mt-2 px-2 py-0.5 bg-solar-bg rounded text-xs capitalize">
+                      <span className="inline-block mt-2 px-2 py-0.5 bg-solar rounded text-xs capitalize">
                         {event.component}
                       </span>
                     </div>
@@ -440,7 +436,7 @@ export function SimulationResults() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="p-4 bg-solar-bg-card rounded-xl hover:bg-solar-bg-card/80 transition-colors"
+                  className="p-4 bg-solar-card rounded-xl hover:bg-solar-card/80 transition-colors"
                 >
                   <div className="flex items-start gap-3">
                     <div className={cn(

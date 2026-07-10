@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import { 
   History, 
   Search, 
-  Filter, 
   Calendar,
   Battery,
   AlertTriangle,
@@ -153,7 +152,7 @@ export function SimulationHistory() {
             placeholder="Search by date or configuration..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-solar-bg-card border border-solar-border rounded-xl focus:outline-none focus:border-primary transition-colors"
+            className="w-full pl-12 pr-4 py-3 bg-solar-card border border-solar rounded-xl focus:outline-none focus:border-primary transition-colors"
           />
         </div>
 
@@ -174,7 +173,7 @@ export function SimulationHistory() {
                   ? filter.color 
                     ? `bg-${filter.color}/20 text-${filter.color} border border-${filter.color}/30`
                     : 'bg-primary text-white'
-                  : 'bg-solar-bg-card text-muted-foreground hover:text-foreground'
+                  : 'bg-solar-card text-muted-foreground hover:text-foreground'
               )}
             >
               {filter.label}
@@ -291,15 +290,15 @@ export function SimulationHistory() {
 
                   {/* Configuration */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                    <div className="p-3 bg-solar-bg-card rounded-xl">
+                    <div className="p-3 bg-solar-card rounded-xl">
                       <p className="text-xs text-muted-foreground mb-1">Load</p>
                       <p className="font-mono font-medium">{simulation.input.load_watts}W</p>
                     </div>
-                    <div className="p-3 bg-solar-bg-card rounded-xl">
+                    <div className="p-3 bg-solar-card rounded-xl">
                       <p className="text-xs text-muted-foreground mb-1">Duration</p>
                       <p className="font-mono font-medium">{formatDuration(simulation.input.simulation_days)}</p>
                     </div>
-                    <div className="p-3 bg-solar-bg-card rounded-xl">
+                    <div className="p-3 bg-solar-card rounded-xl">
                       <p className="text-xs text-muted-foreground mb-1">Battery Health</p>
                       <p className={cn(
                         'font-mono font-medium',
@@ -310,7 +309,7 @@ export function SimulationHistory() {
                         {simulation.summary.battery_health_final.toFixed(1)}%
                       </p>
                     </div>
-                    <div className="p-3 bg-solar-bg-card rounded-xl">
+                    <div className="p-3 bg-solar-card rounded-xl">
                       <p className="text-xs text-muted-foreground mb-1">Energy Produced</p>
                       <p className="font-mono font-medium">{simulation.summary.total_energy_produced_kwh.toLocaleString()} kWh</p>
                     </div>
@@ -340,7 +339,7 @@ export function SimulationHistory() {
                   <button className="p-3 rounded-xl bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
                     <Eye className="w-5 h-5" />
                   </button>
-                  <button className="p-3 rounded-xl bg-solar-bg-card text-muted-foreground hover:text-danger hover:bg-danger/10 transition-colors">
+                  <button className="p-3 rounded-xl bg-solar-card text-muted-foreground hover:text-danger hover:bg-danger/10 transition-colors">
                     <Trash2 className="w-5 h-5" />
                   </button>
                   <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-xl hover:bg-primary/90 transition-colors">

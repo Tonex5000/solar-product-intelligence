@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { 
   Search, 
-  Filter, 
   CheckCircle, 
   Battery, 
   Zap, 
@@ -38,7 +37,7 @@ export function Products() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
+  const [, setSelectedProduct] = useState<Product | null>(null)
 
   const filteredProducts = mockProducts.filter((product) => {
     const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory
@@ -75,17 +74,17 @@ export function Products() {
             placeholder="Search products..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-solar-bg-card border border-solar-border rounded-xl focus:outline-none focus:border-primary transition-colors"
+            className="w-full pl-12 pr-4 py-3 bg-solar-card border border-solar rounded-xl focus:outline-none focus:border-primary transition-colors"
           />
         </div>
 
         {/* View Toggle */}
-        <div className="flex items-center gap-2 bg-solar-bg-card rounded-xl p-1">
+        <div className="flex items-center gap-2 bg-solar-card rounded-xl p-1">
           <button
             onClick={() => setViewMode('grid')}
             className={cn(
               'p-2 rounded-lg transition-colors',
-              viewMode === 'grid' ? 'bg-primary text-white' : 'hover:bg-solar-bg'
+              viewMode === 'grid' ? 'bg-primary text-white' : 'hover:bg-solar'
             )}
           >
             <Grid3X3 className="w-5 h-5" />
@@ -94,7 +93,7 @@ export function Products() {
             onClick={() => setViewMode('list')}
             className={cn(
               'p-2 rounded-lg transition-colors',
-              viewMode === 'list' ? 'bg-primary text-white' : 'hover:bg-solar-bg'
+              viewMode === 'list' ? 'bg-primary text-white' : 'hover:bg-solar'
             )}
           >
             <List className="w-5 h-5" />
@@ -117,7 +116,7 @@ export function Products() {
                 'w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-left',
                 selectedCategory === category.id
                   ? 'bg-primary/10 text-primary border border-primary/20'
-                  : 'hover:bg-solar-bg-card text-muted-foreground hover:text-foreground'
+                  : 'hover:bg-solar-card text-muted-foreground hover:text-foreground'
               )}
             >
               <category.icon className="w-5 h-5" />
@@ -182,30 +181,30 @@ export function Products() {
                 <div className="flex flex-wrap gap-2">
                   {product.category === 'battery' && (
                     <>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">48V</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">200Ah</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">4000 cycles</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">48V</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">200Ah</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">4000 cycles</span>
                     </>
                   )}
                   {product.category === 'inverter' && (
                     <>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">5000W</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">99.2% eff</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">MPPT</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">5000W</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">99.2% eff</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">MPPT</span>
                     </>
                   )}
                   {product.category === 'panel' && (
                     <>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">400W</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">22.5% eff</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">25yr warranty</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">400W</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">22.5% eff</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">25yr warranty</span>
                     </>
                   )}
                   {product.category === 'charge_controller' && (
                     <>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">30A</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">100V max</span>
-                      <span className="px-2 py-1 bg-solar-bg rounded-lg text-xs">MPPT</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">30A</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">100V max</span>
+                      <span className="px-2 py-1 bg-solar rounded-lg text-xs">MPPT</span>
                     </>
                   )}
                 </div>
@@ -224,7 +223,7 @@ export function Products() {
       {/* Empty State */}
       {filteredProducts.length === 0 && (
         <div className="text-center py-16">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-solar-bg-card flex items-center justify-center">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-solar-card flex items-center justify-center">
             <Search className="w-8 h-8 text-muted-foreground" />
           </div>
           <p className="text-lg font-medium">No products found</p>

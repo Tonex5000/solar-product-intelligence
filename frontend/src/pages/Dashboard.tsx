@@ -13,7 +13,6 @@ import {
   Shield
 } from 'lucide-react'
 import { useSimulationStore } from '@/stores/simulationStore'
-import { formatNumber } from '@/lib/utils'
 
 const stats = [
   { 
@@ -87,7 +86,8 @@ const alerts = [
 ]
 
 export function Dashboard() {
-  const { simulationHistory } = useSimulationStore()
+  // simulationHistory can be used for displaying recent simulations
+  useSimulationStore()
 
   return (
     <div className="space-y-8">
@@ -201,7 +201,7 @@ export function Dashboard() {
             {recentSimulations.map((sim) => (
               <div
                 key={sim.id}
-                className="flex items-center gap-4 p-4 rounded-xl bg-solar-bg-card hover:bg-solar-bg-card/80 transition-colors"
+                className="flex items-center gap-4 p-4 rounded-xl bg-solar-card hover:bg-solar-card/80 transition-colors"
               >
                 <div className="flex-1">
                   <p className="font-medium">{sim.name}</p>

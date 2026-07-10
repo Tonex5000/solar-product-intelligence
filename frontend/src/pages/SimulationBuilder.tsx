@@ -8,7 +8,6 @@ import {
   Zap, 
   Cable,
   AlertCircle,
-  CheckCircle,
   ChevronRight,
   Loader2,
   Info,
@@ -16,7 +15,7 @@ import {
 } from 'lucide-react'
 import { cn, getNodeGlowClass } from '@/lib/utils'
 import { useSimulationStore } from '@/stores/simulationStore'
-import type { RailwayNode, RailwayEdge, SimulationOutput } from '@/types'
+import type { SimulationOutput } from '@/types'
 
 // Mock products for selection
 const mockProducts = {
@@ -127,7 +126,7 @@ export function SimulationBuilder() {
         </div>
         <button
           onClick={() => setShowConfig(!showConfig)}
-          className="flex items-center gap-2 px-4 py-2 bg-solar-bg-card rounded-xl hover:bg-solar-bg-card/80 transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-solar-card rounded-xl hover:bg-solar-card/80 transition-colors"
         >
           <Settings2 className="w-5 h-5" />
           {showConfig ? 'Hide' : 'Show'} Config
@@ -241,7 +240,7 @@ export function SimulationBuilder() {
           </div>
 
           {/* Component Selection */}
-          <div className="mt-8 pt-8 border-t border-solar-border">
+          <div className="mt-8 pt-8 border-t border-solar">
             <h3 className="text-sm font-medium text-muted-foreground mb-4">Select Components</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {Object.entries(mockProducts).map(([type, products]) => (
@@ -254,7 +253,7 @@ export function SimulationBuilder() {
                     {type.replace('_', ' ')}
                   </label>
                   <select
-                    className="w-full px-3 py-2 bg-solar-bg-card border border-solar-border rounded-lg text-sm focus:outline-none focus:border-primary"
+                    className="w-full px-3 py-2 bg-solar-card border border-solar rounded-lg text-sm focus:outline-none focus:border-primary"
                     onChange={(e) => {
                       const key = type.replace(' ', '') as keyof typeof simulationConfig
                       if (e.target.value) {
@@ -404,7 +403,7 @@ export function SimulationBuilder() {
               </div>
 
               {/* Summary */}
-              <div className="mt-6 p-4 bg-solar-bg-card rounded-xl">
+              <div className="mt-6 p-4 bg-solar-card rounded-xl">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-muted-foreground">Daily Energy Requirement</span>
                   <span className="font-mono font-medium">

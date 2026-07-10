@@ -5,12 +5,9 @@ import {
   Package, 
   Play, 
   History, 
-  Settings,
   Sun,
-  Zap,
   ChevronRight,
-  Menu,
-  X
+  Menu
 } from 'lucide-react'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
@@ -27,15 +24,15 @@ export function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(true)
 
   return (
-    <div className="min-h-screen bg-solar-bg flex">
+    <div className="min-h-screen bg-solar flex">
       {/* Sidebar */}
       <motion.aside
         initial={false}
         animate={{ width: sidebarOpen ? 260 : 80 }}
-        className="bg-solar-bg-elevated border-r border-solar-border flex flex-col"
+        className="bg-solar-elevated border-r border-solar flex flex-col"
       >
         {/* Logo */}
-        <div className="h-16 flex items-center px-6 border-b border-solar-border">
+        <div className="h-16 flex items-center px-6 border-b border-solar">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-solar flex items-center justify-center">
               <Sun className="w-6 h-6 text-white" />
@@ -68,7 +65,7 @@ export function Layout() {
                   'flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200',
                   isActive
                     ? 'bg-primary/10 text-primary border border-primary/20'
-                    : 'text-muted-foreground hover:bg-solar-bg-card hover:text-foreground'
+                    : 'text-muted-foreground hover:bg-solar-card hover:text-foreground'
                 )}
               >
                 <Icon className={cn('w-5 h-5 flex-shrink-0', isActive && 'text-primary')} />
@@ -93,10 +90,10 @@ export function Layout() {
         </nav>
 
         {/* Toggle button */}
-        <div className="p-4 border-t border-solar-border">
+        <div className="p-4 border-t border-solar">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-solar-bg-card hover:bg-solar-bg-card/80 transition-colors text-muted-foreground hover:text-foreground"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-solar-card hover:bg-solar-card/80 transition-colors text-muted-foreground hover:text-foreground"
           >
             <Menu className="w-5 h-5" />
             {sidebarOpen && <span className="text-sm">Collapse</span>}

@@ -109,7 +109,7 @@ function AlertCard({ alert, onDismiss, onMarkRead }: {
                 {alert.title}
               </h4>
               {alert.day !== undefined && (
-                <span className="text-xs text-muted-foreground bg-solar-bg-card px-2 py-0.5 rounded">
+                <span className="text-xs text-muted-foreground bg-solar-card px-2 py-0.5 rounded">
                   Day {alert.day}
                 </span>
               )}
@@ -118,7 +118,7 @@ function AlertCard({ alert, onDismiss, onMarkRead }: {
               {alert.message}
             </p>
             {alert.component && (
-              <span className="inline-block mt-2 px-2 py-0.5 bg-solar-bg-card rounded text-xs capitalize">
+              <span className="inline-block mt-2 px-2 py-0.5 bg-solar-card rounded text-xs capitalize">
                 {alert.component}
               </span>
             )}
@@ -129,7 +129,7 @@ function AlertCard({ alert, onDismiss, onMarkRead }: {
               e.stopPropagation()
               onDismiss?.(alert.id)
             }}
-            className="p-1 hover:bg-solar-bg-card rounded transition-colors"
+            className="p-1 hover:bg-solar-card rounded transition-colors"
           >
             <X className="w-4 h-4 text-muted-foreground" />
           </button>
@@ -157,9 +157,9 @@ function AlertCard({ alert, onDismiss, onMarkRead }: {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="border-t border-solar-border/50 overflow-hidden"
+            className="border-t border-solar/50 overflow-hidden"
           >
-            <div className="p-4 space-y-4 bg-solar-bg/50">
+            <div className="p-4 space-y-4 bg-solar/50">
               {/* Explanation */}
               {alert.explanation && (
                 <div className="flex gap-3">
@@ -200,7 +200,7 @@ function AlertCard({ alert, onDismiss, onMarkRead }: {
               )}
 
               {/* Key Learning */}
-              <div className="flex gap-3 p-3 bg-solar-bg-card rounded-lg">
+              <div className="flex gap-3 p-3 bg-solar-card rounded-lg">
                 <div className="p-2 rounded-lg bg-solar/10 h-fit">
                   <Lightbulb className="w-4 h-4 text-solar" />
                 </div>
@@ -329,7 +329,7 @@ export function AlertToast({
 
           <button
             onClick={onDismiss}
-            className="p-1 hover:bg-solar-bg-card rounded transition-colors"
+            className="p-1 hover:bg-solar-card rounded transition-colors"
           >
             <X className="w-4 h-4 text-muted-foreground" />
           </button>

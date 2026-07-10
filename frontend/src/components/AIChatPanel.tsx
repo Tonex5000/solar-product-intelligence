@@ -6,8 +6,6 @@ import {
   User, 
   Sparkles,
   Loader2,
-  ChevronDown,
-  AlertCircle,
   MessageSquare
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -70,7 +68,7 @@ export function AIChatPanel() {
   return (
     <div className="glass-card rounded-2xl h-[calc(100vh-200px)] flex flex-col">
       {/* Header */}
-      <div className="p-4 border-b border-solar-border">
+      <div className="p-4 border-b border-solar">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-solar flex items-center justify-center">
             <Sparkles className="w-5 h-5 text-white" />
@@ -91,7 +89,7 @@ export function AIChatPanel() {
                 'flex-1 px-3 py-1.5 rounded-lg text-xs font-medium transition-all',
                 level === l.value
                   ? 'bg-primary text-white'
-                  : 'bg-solar-bg-card text-muted-foreground hover:text-foreground'
+                  : 'bg-solar-card text-muted-foreground hover:text-foreground'
               )}
             >
               {l.label}
@@ -120,7 +118,7 @@ export function AIChatPanel() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 onClick={() => handleQuickQuestion(question)}
-                className="w-full text-left p-3 rounded-xl bg-solar-bg-card hover:bg-primary/10 border border-solar-border hover:border-primary/30 transition-all text-sm"
+                className="w-full text-left p-3 rounded-xl bg-solar-card hover:bg-primary/10 border border-solar hover:border-primary/30 transition-all text-sm"
               >
                 {question}
               </motion.button>
@@ -193,7 +191,7 @@ export function AIChatPanel() {
       </div>
 
       {/* Input */}
-      <div className="p-4 border-t border-solar-border">
+      <div className="p-4 border-t border-solar">
         <div className="flex items-center gap-3">
           <input
             type="text"
@@ -201,7 +199,7 @@ export function AIChatPanel() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && handleSend()}
             placeholder="Ask about your simulation..."
-            className="flex-1 px-4 py-3 bg-solar-bg-card border border-solar-border rounded-xl focus:outline-none focus:border-primary transition-colors text-sm"
+            className="flex-1 px-4 py-3 bg-solar-card border border-solar rounded-xl focus:outline-none focus:border-primary transition-colors text-sm"
           />
           <button
             onClick={handleSend}
@@ -210,7 +208,7 @@ export function AIChatPanel() {
               'p-3 rounded-xl transition-all',
               input.trim() && !isLoading
                 ? 'bg-primary hover:bg-primary/90 text-white'
-                : 'bg-solar-bg-card text-muted-foreground cursor-not-allowed'
+                : 'bg-solar-card text-muted-foreground cursor-not-allowed'
             )}
           >
             <Send className="w-5 h-5" />

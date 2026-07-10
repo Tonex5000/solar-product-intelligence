@@ -20,9 +20,13 @@ module.exports = {
         // Solar System Theme
         solar: {
           bg: '#0B0F14',
-          'bg-elevated': '#111820',
-          'bg-card': '#161D27',
+          elevated: '#111820',
+          card: '#161D27',
           border: '#1E2A3A',
+          DEFAULT: '#F59E0B',
+          light: '#FBBF24',
+          dark: '#D97706',
+          glow: 'rgba(245, 158, 11, 0.5)',
         },
         // Primary - Electric Blue
         primary: {
@@ -30,13 +34,6 @@ module.exports = {
           light: '#60A5FA',
           dark: '#2563EB',
           glow: 'rgba(59, 130, 246, 0.5)',
-        },
-        // Secondary - Solar Yellow/Gold
-        solar: {
-          DEFAULT: '#F59E0B',
-          light: '#FBBF24',
-          dark: '#D97706',
-          glow: 'rgba(245, 158, 11, 0.5)',
         },
         // Status Colors
         success: '#10B981',
